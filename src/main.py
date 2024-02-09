@@ -19,7 +19,7 @@ app.add_middleware(
 # Создание экземпляра приложения FastAPI app = FastAPI()
 
 # Настройки подключения к базе данных
-DATABASE_URL = "postgresql://postgres:@localhost/cometdb"
+DATABASE_URL = "postgresql://postgres:pass@localhost/cometdb"
 
 # Инициализация базы данных
 database = Database(DATABASE_URL)
