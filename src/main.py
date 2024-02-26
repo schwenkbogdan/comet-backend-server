@@ -5,8 +5,18 @@ from sqlalchemy import create_engine, Column, Integer, String, MetaData, Table
 from sqlalchemy.orm import sessionmaker
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 app = FastAPI()
+
+# Получите переменные окружения
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
 
 # Добавляем CORSMiddleware
 app.add_middleware(
@@ -19,7 +29,8 @@ app.add_middleware(
 # Создание экземпляра приложения FastAPI app = FastAPI()
 
 # Настройки подключения к базе данных
-DATABASE_URL = "postgresql://postgres:@localhost/cometdb"
+
+DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Инициализация базы данных
 database = Database(DATABASE_URL)
